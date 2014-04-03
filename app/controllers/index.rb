@@ -3,6 +3,7 @@ enable :sessions
 #homepage, includes registration and longing fields
 get '/' do
   # Look in app/views/index.erb
+  session[:user] = nil
   erb :index
 end
 
@@ -14,10 +15,10 @@ post '/users' do
   user = User.new(params)
   if user.save # will return false if validations failed
     session[:user] = user
-    redirect to('/users/#{@user.id}')
+    redirect to("/users/#{user.handle}")
   else
     @error_message = "Invalid registration information"
-    redirect to('/')
+    erb :index
   end
 
   #redirect to(/users) #stay on same page and deliver error
@@ -27,10 +28,10 @@ end
 post '/login' do
   # Look in app/views/index.erb
   #specify if form takes a string or symbol for session key
-  if @user = User.where(:handle, params[:handle]).first
-    if @user.password == params[:password]
-      session[:user] = @user
-      redirect to('/users/#{@user.id}')
+  if user = User.where(:handle, params[:handle]).first
+    if user.password == params[:password]
+      session[:user] = user
+      redirect to('/users/#{user.handle}')
     else
       @error_message = "Passwords do not match"
       redirect to('/')
@@ -44,11 +45,13 @@ end
 #get user profile page
   #link to display of all tweets
   #logout button: redirect top sign-in index page
-get '/users/:user_id' do
-  @user = User.find(params[:user_id])
-  erb :user
-
-
+get '/users/:handle' do
+  @user = User.where(handle: params[:handle]).first
+  if session[:user] = @user
+    erb :user
+  else
+    erb :index
+  end
 end
 
 
