@@ -1,4 +1,4 @@
-class CreateUsersTable < ActiveRecord::Migration
+class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |user|
       user.string :handle
