@@ -11,9 +11,13 @@ end
 post '/users' do
   # Look in app/views/index.erb
   #specify if form takes a string or symbol for session key
-  session[:handle] = params[:handle]
-  session[:email] = params[:email]
-  session[:password] = params[:password]
+  user = User.new(params)
+  if user.save # will return false if validations failed
+    session[:user] = user
+  else
+    @error_message = "Invalid registration information"
+  end
+
   #redirect to(/users) #stay on same page and deliver error
 end
 
