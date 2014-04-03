@@ -14,8 +14,10 @@ post '/users' do
   user = User.new(params)
   if user.save # will return false if validations failed
     session[:user] = user
+    redirect to('/users/#{@user.id}')
   else
     @error_message = "Invalid registration information"
+    redirect to('/')
   end
 
   #redirect to(/users) #stay on same page and deliver error
@@ -28,7 +30,7 @@ post '/login' do
   if @user = User.where(:handle, params[:handle]).first
     if @user.password == params[:password]
       session[:user] = @user
-      redirect to('/users /#{@user.id}')
+      redirect to('/users/#{@user.id}')
     else
       @error_message = "Passwords do not match"
       redirect to('/')
@@ -42,6 +44,13 @@ end
 #get user profile page
   #link to display of all tweets
   #logout button: redirect top sign-in index page
+get '/users/:user_id' do
+  @user = User.find(params[:user_id])
+  erb :user
+
+
+end
+
 
 
 
