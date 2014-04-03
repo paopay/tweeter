@@ -1,0 +1,8 @@
+<div class="container">
+  <h1><%= @user.handle %>'s Tweets</h1>
+  <ul>
+    <% @tweets.each do |tweet| %>
+      <li><%= tweet %></li>
+    <% end %>
+  </ul>
+</div>
