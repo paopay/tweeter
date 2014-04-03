@@ -47,11 +47,16 @@ end
   #logout button: redirect top sign-in index page
 get '/users/:handle' do
   @user = User.where(handle: params[:handle]).first
-  if session[:user] = @user
+  if session[:user] == @user
     erb :user
   else
     erb :index
   end
+end
+
+get '/logout' do
+  session[:user] = nil
+  redirect('/')
 end
 
 
