@@ -42,3 +42,8 @@ end
 #get user profile page
   #link to display of all tweets
   #logout button: redirect top sign-in index page
+
+
+
+
+
