@@ -21,10 +21,10 @@ post '/login' do
       redirect("/users/#{user.handle}/feed")
     else
       @error_message = "Passwords do not match"
-      redirect to('/login')
+      erb :index
     end
   @error_message = "Not a valid handle"
-  redirect('/login')
+  erb :index
   end
 end
 
@@ -44,7 +44,7 @@ post '/register' do
     redirect("/users/#{user.handle}/feed")
   else
     @error_message = "Invalid registration information"
-    redirect('/register')
+    redirect back
   end
   #redirect to(/users) #stay on same page and deliver error
 end
@@ -72,6 +72,10 @@ get '/users/:handle/feed' do
     @error_message = "Only #{params[:handle]} can see that page!"
     erb :index
   end
+end
+
+get 'users/:handle/tweets/new' do
+  erb :create_tweet
 end
 
 # ADDED THIS METHOD - CHECK WITH RAVI FOR USER PROFILE PAGE ERROR MESSAGE
