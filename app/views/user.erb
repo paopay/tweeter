@@ -1,9 +1,16 @@
 <div class="container">
-  <h1><%= @user.handle %>'s Tweets</h1>
+<h1><%= @user.handle %>'s Profile</h1>
+  <ul>
+    <li>Name: <%= @user.name %></li>
+    <li>Email: <%= @user.email %></li>
+  </ul>
+  <p>Tweets</p>
   <ul>
     <% @user.tweets.each do |tweet| %>
-      <li><%= tweet %></li>
-    <% end %>
+        <li><%=  "#{tweet.updated_at.strftime("%d %b. %Y")} - #{tweet.location} - #{tweet.content}" %></li>
+     <% end %>
   </ul>
+  <a href='/users/<%= @user.handle %>/<%= @user.tweets %>'>All Tweets</a>
+  <br>
   <a href='/logout'>Logout</a>
 </div>
