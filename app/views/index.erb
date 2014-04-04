@@ -1,23 +1,30 @@
-<div class="container">
-  <h1>Welcome to Tweeter!</h1>
-  <form action="/login" method="post">
-    <h2>Login</h2>
-    <table>
-      <tr><td>Username</td><td><input type="text" name="handle"></td></tr>
-      <tr><td>Password</td><td><input type="text" name="password"></td></tr>
-      <tr><td><input type="submit" value="login"></td></tr>
-    </table>
-  </form>
-  <br><br>
-  <form action="/users" method="post">
-    <h2>Register</h2>
-    <table>
-      <tr><td>Name</td><td><input type="text" name="name"></td></tr>
-      <tr><td>Email</td><td><input type="text" name="email"></td></tr>
-      <tr><td>Username</td><td><input type="text" name="handle"></td></tr>
-      <tr><td>Password</td><td><input type="text" name="password"></td></tr>
-      <tr><td><input type="submit" value="register"></td></tr>
-    </table>
-  </form>
-  <%= @error_message %>
+<div class="topbox">
+
+  <div class="container">
+    <h1>Welcome to Tweeter!</h1>
+    <form action="/login" method="post">
+      <h2>Login</h2>
+      <table>
+        <tr><td class="inputtext">Username:</td><td><input class="inputbox" type="text" name="handle"></td></tr>
+        <tr><td class="inputtext">Password:</td><td><input class="inputbox" type="text" name="password"></td></tr>
+        <tr><td><button type="submit" value="login">Login</button></td></tr>
+      </table>
+    </form>
+    <br><br>
+  </div>
+
+  <div class="container">
+    <form action="/users" method="post">
+      <h2>Register</h2>
+      <table>
+        <tr><td class="inputtext">Name:</td><td><input class="inputbox" type="text" name="name"></td></tr>
+        <tr><td class="inputtext">Email:</td><td><input class="inputbox" type="text" name="email"></td></tr>
+        <tr><td class="inputtext">Username:</td><td><input class="inputbox" type="text" name="handle"></td></tr>
+        <tr><td class="inputtext">Password:</td><td><input class="inputbox" type="text" name="password"></td></tr>
+        <tr><td><button type="submit" value="register">Sign me up!</button></td></tr>
+      </table>
+    </form>
+    <%= @error_message %>
+  </div>
+
 </div>
