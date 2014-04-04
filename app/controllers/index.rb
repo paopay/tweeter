@@ -54,12 +54,12 @@ end
   #link to display of all tweets
   #logout button: redirect top sign-in index page
 get '/users/:handle' do
-  @user = User.where(handle: params[:handle]).first
-  if session[:user] == @user
+  # @user = User.where(handle: params[:handle]).first
+  # if session[:user] == @user
     erb :profile
-  else
-    redirect back
-  end
+  # else
+  # redirect back
+  # end
 end
 
 #get user tweet feed
@@ -69,6 +69,7 @@ get '/users/:handle/feed' do
   if session[:user] == @user
     erb :feed
   else
+    @error_message = "Only #{params[:handle]} can see that page!"
     erb :index
   end
 end
