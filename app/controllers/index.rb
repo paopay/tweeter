@@ -48,7 +48,7 @@ end
 get '/users/:handle' do
   @user = User.where(handle: params[:handle]).first
   if session[:user] == @user
-    erb :user_profile
+    erb :user
   else
     erb :index
   end
