@@ -74,13 +74,18 @@ get '/users/:handle/feed' do
   end
 end
 
+# this is just in case a user tries to get to the tweet feed manually
+get '/users/:handle/tweets' do
+  redirect('/users/' + params[:handle])
+end
+
 get '/users/:handle/tweets/new' do
   erb :create_tweet
 end
 
 # ADDED THIS METHOD - CHECK WITH RAVI FOR USER PROFILE PAGE ERROR MESSAGE
 post '/users/:handle/tweets' do
-  user = User.where(handle: params[:handle]).first
+  @user = User.where(handle: params[:handle]).first
   tweet = user.tweets.new(params)
   if tweet.save
     redirect("/users/#{user.handle}")
