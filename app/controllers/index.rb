@@ -31,7 +31,7 @@ post '/login' do
   if user = User.where(handle: params[:handle]).first
     if user.password == params[:password]
       session[:user] = user
-      redirect to('/users/#{user.handle}')
+      redirect to("/users/#{user.handle}")
     else
       @error_message = "Passwords do not match"
       redirect to('/')
