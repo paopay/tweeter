@@ -1,0 +1,17 @@
+<form action="/login" method="post">
+  <h2>Login</h2>
+  <table class="index_form">
+    <tr>
+      <td class="inputtext">Username:</td>
+      <td><input class="inputbox" type="text" name="handle"></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="inputtext">Password:</td>
+      <td><input class="inputbox" type="text" name="password"></td>
+      <td><button type="submit" value="login">Login</button></td>
+    </tr>
+  </table>
+</form>
+
+<p><%= @error_message %></p>
