@@ -18,13 +18,13 @@ post '/login' do
   if user = User.where(handle: params[:handle]).first
     if user.password == params[:password]
       session[:user] = user
-      redirect to("/users/#{user.handle}/feed")
+      redirect("/users/#{user.handle}/feed")
     else
       @error_message = "Passwords do not match"
-      redirect to('/')
+      redirect to('/login')
     end
   @error_message = "Not a valid handle"
-  redirect to('/')
+  redirect('/login')
   end
 end
 
@@ -41,10 +41,10 @@ post '/register' do
   user = User.new(params)
   if user.save # will return false if validations failed
     session[:user] = user
-    redirect to("/users/#{user.handle}/feed")
+    redirect("/users/#{user.handle}/feed")
   else
     @error_message = "Invalid registration information"
-    erb :index
+    redirect('/register')
   end
   #redirect to(/users) #stay on same page and deliver error
 end
@@ -58,7 +58,7 @@ get '/users/:handle' do
   if session[:user] == @user
     erb :profile
   else
-    erb :index
+    redirect back
   end
 end
 
@@ -81,37 +81,40 @@ post '/users/:handle/tweets' do
     redirect("/users/#{user.handle}")
   else
     @error_message = "Tweet must be between 1 and 140 characters, sorry."
-    #erb :profile  WARNINGWARNINGWARNING CHECK WITH RAVI IMPLEMENT THIS IN PROFILE VIEW BACK? WHERE???
+    erb :feed
   end
 end
 
 get '/users/:handle/followers' do
-
+  user = User.where(handle: params[:handle]).first
+  @followers = user.followers
   erb :followers
 end
 
 get '/users/:handle/following' do
-
+  user = User.where(handle: params[:handle]).first
+  @following = user.following
   erb :following
 end
 
 post '/users/:handle/following/:handle_2' do
-
+  user = User.where(handle: params[:handle]).first
+  followed_user = User.where(handle: params[:handle_2]).first
+  user.following << followed_user
   redirect("/users/#{params[:handle_2]}")
 end
 
 post '/users/:handle/tweets/:tweet_id/delete' do
-
+  Tweet.find(:tweet_id).delete
   redirect("/users/#{params[:handle]}")
 end
 
 get '/users/:handle/delete' do
-
   erb :delete
 end
 
 post '/users/:handle/delete' do
-
+  User.where(handle: params[:handle]).first.delete
   redirect('/')
 end
 
@@ -119,14 +122,6 @@ get '/logout' do
   session[:user] = nil
   redirect('/')
 end
-
-# post '/users/:handle/tweets' do
-#   @user = User.where(handle: params[:handle]).first
-
-
-# end
-
-
 
 
 
