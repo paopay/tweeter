@@ -1,5 +1,7 @@
 <div id="userprofile">
+  <h1>@<%= @user.handle %>'s Profile</h1>
+
   <img src="http://www.gravatar.com/avatar/<%= gravatar_hash(@user.email) %>">
+  <br>
   <span class="user_name"><%= @user.name %></span>
-  <span class="user_handle"><%= @user.handle %></span>
 </div>

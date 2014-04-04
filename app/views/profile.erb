@@ -1,17 +1,9 @@
 <%= erb :_navbar_logged_in if session[:user]%>
 
 <div class="container">
-<h1><%= @user.handle %>'s Profile</h1>
-  <ul>
-    <li>Name: <%= @user.name %></li>
-    <li>Email: <%= @user.email %></li>
-  </ul>
-  <p>Tweets</p>
-  <ul>
-    <% @user.tweets.each do |tweet| %>
-        <li><%=  "#{tweet.updated_at.strftime("%d %b. %Y")} - #{tweet.location} - #{tweet.content}" %></li>
-     <% end %>
-  </ul>
+
+  <%= erb :_userprofile %>
+
   <a href='/users/<%= @user.handle %>/feed'>Tweet Feed</a>
   <br>
   <a href='/logout'>Logout</a>

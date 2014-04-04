@@ -1,7 +1,9 @@
 <%= session[:user].nil? ? (erb :_navbar_logged_out) : (erb :_navbar_logged_in) %>
 
 <div class="container">
-  <h1>Welcome to Tweeter!</h1>
-  <%= erb(:_login) %>
-  <%= erb(:_register) %>
+  <div class="topbox">
+    <h1>Welcome to Tweeter!</h1>
+    <%= erb(:_login) %>
+    <%= erb(:_register) %>
+  </div>
 </div>
