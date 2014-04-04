@@ -74,7 +74,7 @@ get '/users/:handle/feed' do
   end
 end
 
-get 'users/:handle/tweets/new' do
+get '/users/:handle/tweets/new' do
   erb :create_tweet
 end
 
