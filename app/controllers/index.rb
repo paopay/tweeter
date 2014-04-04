@@ -3,7 +3,6 @@ enable :sessions
 #homepage, includes registration and longing fields
 get '/' do
   # Look in app/views/index.erb
-  session[:user] = nil
   erb :index
 end
 
@@ -54,16 +53,28 @@ get '/users/:handle' do
   end
 end
 
+
+#get user tweet feed
+get '/users/:handle/:tweets' do
+  @user = User.where(handle: params[:handle]).first
+  @tweets = Tweet.all
+  if session[:user] == @user
+    erb :tweets
+  else
+    erb :index
+  end
+end
+
 get '/logout' do
   session[:user] = nil
   redirect('/')
 end
 
-post '/users/:handle/tweets' do
-  @user = User.where(handle: params[:handle]).first
+# post '/users/:handle/tweets' do
+#   @user = User.where(handle: params[:handle]).first
 
 
-end
+# end
 
 
 
