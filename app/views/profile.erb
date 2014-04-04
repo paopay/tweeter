@@ -12,7 +12,7 @@
         <li><%=  "#{tweet.updated_at.strftime("%d %b. %Y")} - #{tweet.location} - #{tweet.content}" %></li>
      <% end %>
   </ul>
-  <a href='/users/<%= @user.handle %>/<%= @user.tweets %>'>All Tweets</a>
+  <a href='/users/<%= @user.handle %>/feed'>Tweet Feed</a>
   <br>
   <a href='/logout'>Logout</a>
 </div>

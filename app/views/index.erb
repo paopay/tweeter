@@ -6,6 +6,7 @@
       <h2>Login</h2>
       <table class="index">
         <tr><td class="inputtext">Username:</td><td><input class="inputbox" type="text" name="handle"></td></tr>
+        <p><%= @error_message %></p>
         <tr><td class="inputtext">Password:</td><td><input class="inputbox" type="text" name="password"></td></tr>
         <tr><td colspan="2"><button type="submit" value="login">Login</button></td></tr>
       </table>
@@ -24,7 +25,6 @@
         <tr><td colspan="2"><button type="submit" value="register">Sign me up!</button></td></tr>
       </table>
     </form>
-    <%= @error_message %>
   </div>
 
 </div>
