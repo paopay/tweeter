@@ -20,7 +20,6 @@ post '/users' do
     @error_message = "Invalid registration information"
     erb :index
   end
-
   #redirect to(/users) #stay on same page and deliver error
 end
 
@@ -51,6 +50,19 @@ get '/users/:handle' do
     erb :user
   else
     erb :index
+  end
+end
+
+
+# ADDED THIS METHOD - CHECK WITH RAVI FOR USER PROFILE PAGE ERROR MESSAGE
+post '/users/:handle/tweets' do
+  user = User.where(handle: params[:handle]).first
+  tweet = user.tweets.new(params)
+  if tweet.save
+    redirect("/users/#{user.handle}")
+  else
+    @error_message = "Tweet must be between 1 and 140 characters, sorry."
+    erb :user # WARNINGWARNINGWARNING CHECK WITH RAVI
   end
 end
 
