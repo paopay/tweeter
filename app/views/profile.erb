@@ -1,3 +1,5 @@
+<%= erb :navbar_logged_in if session[:user]%>
+
 <div class="container">
 <h1><%= @user.handle %>'s Profile</h1>
   <ul>
