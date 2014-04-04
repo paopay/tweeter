@@ -28,7 +28,7 @@ end
 post '/login' do
   # Look in app/views/index.erb
   #specify if form takes a string or symbol for session key
-  if user = User.where(:handle, params[:handle]).first
+  if user = User.where(handle: params[:handle]).first
     if user.password == params[:password]
       session[:user] = user
       redirect to('/users/#{user.handle}')
