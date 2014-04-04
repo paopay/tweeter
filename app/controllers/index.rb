@@ -15,10 +15,10 @@ end
 post '/login' do
   # Look in app/views/index.erb
   #specify if form takes a string or symbol for session key
-  if user = User.where(handle: params[:handle]).first
+  if @user = User.where(handle: params[:handle]).first
     if user.password == params[:password]
       session[:user] = user
-      redirect("/users/#{user.handle}/feed")
+      redirect("/users/#{@user.handle}/feed")
     else
       @error_message = "Passwords do not match"
       erb :index
@@ -55,6 +55,7 @@ end
   #logout button: redirect top sign-in index page
 get '/users/:handle' do
   @user = User.where(handle: params[:handle]).first
+  @tweets = Tweet.all
   if session[:user] == @user
     erb :profile
   else
@@ -65,7 +66,7 @@ end
 #get user tweet feed
 get '/users/:handle/feed' do
   @user = User.where(handle: params[:handle]).first
-  @tweets = Tweet.all
+  @tweets = Tweet.first
   if session[:user] == @user
     erb :feed
   else
@@ -80,15 +81,18 @@ get '/users/:handle/tweets' do
 end
 
 get '/users/:handle/tweets/new' do
-  erb :create_tweet
+  @user = User.where(handle: params[:handle]).first
+  if session[:user] == @user
+    erb :create_tweet
+  end
 end
 
 # ADDED THIS METHOD - CHECK WITH RAVI FOR USER PROFILE PAGE ERROR MESSAGE
 post '/users/:handle/tweets' do
   @user = User.where(handle: params[:handle]).first
-  tweet = user.tweets.new(params)
-  if tweet.save
-    redirect("/users/#{user.handle}")
+  @tweet = @user.tweets.new(content: params[:content])
+  if @tweet.save
+    redirect("/users/#{@user.handle}")
   else
     @error_message = "Tweet must be between 1 and 140 characters, sorry."
     erb :feed

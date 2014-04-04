@@ -4,7 +4,12 @@
 
   <%= erb :_userprofile %>
 
+<% for tweet in @tweets %>
+  <%= erb :_tweet, locals: {tweet: tweet} %>
+<% end %>
+
   <a href='/users/<%= @user.handle %>/feed'>Tweet Feed</a>
   <br>
   <a href='/logout'>Logout</a>
 </div>
+
