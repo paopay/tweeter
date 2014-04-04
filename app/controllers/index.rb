@@ -59,6 +59,11 @@ get '/logout' do
   redirect('/')
 end
 
+post '/users/:handle/tweets' do
+  @user = User.where(handle: params[:handle]).first
+
+
+end
 
 
 
