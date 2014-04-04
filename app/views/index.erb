@@ -1,30 +1,9 @@
-<div class="topbox">
+<%= session[:user].nil? ? (erb :_navbar_logged_out) : (erb :_navbar_logged_in) %>
 
-  <div class="container">
+<div class="container">
+  <div class="topbox">
     <h1>Welcome to Tweeter!</h1>
-    <form action="/login" method="post">
-      <h2>Login</h2>
-      <table class="form">
-        <tr><td class="inputtext">Username:</td><td><input class="inputbox" type="text" name="handle"></td></tr>
-        <tr><td class="inputtext">Password:</td><td><input class="inputbox" type="text" name="password"></td></tr>
-        <tr><td colspan="2"><button type="submit" value="login">Login</button></td></tr>
-      </table>
-    </form>
-    <br><br>
+    <%= erb(:_login) %>
+    <%= erb(:_register) %>
   </div>
-
-  <div class="container">
-    <form action="/register" method="post">
-      <h2>Register</h2>
-      <table class="form">
-        <tr><td class="inputtext">Name:</td><td><input class="inputbox" type="text" name="name"></td></tr>
-        <tr><td class="inputtext">Email:</td><td><input class="inputbox" type="text" name="email"></td></tr>
-        <tr><td class="inputtext">Username:</td><td><input class="inputbox" type="text" name="handle"></td></tr>
-        <tr><td class="inputtext">Password:</td><td><input class="inputbox" type="text" name="password"></td></tr>
-        <tr><td colspan="2"><button type="submit" value="register">Sign me up!</button></td></tr>
-      </table>
-    </form>
-    <%= @error_message %>
-  </div>
-
 </div>

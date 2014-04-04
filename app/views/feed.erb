@@ -1,0 +1,5 @@
+<%= erb :_navbar_logged_in %>
+
+<% for tweet in @users.followed_users.tweets %>
+  <%= erb :_tweet, locals: {tweet: tweet} %>
+<% end %>

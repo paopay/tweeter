@@ -1,0 +1,10 @@
+<div class="tweet">
+  <span class="date"><%= tweet.created_at %></span>
+  <img src="http://www.gravatar.com/avatar/<%= gravatar_hash(@user.email) %>">
+  <span class="tweet_content"><%= tweet.content %></span>
+  <span class="tweetlinks">
+    <a href="/users/<%= @user.handle %>/tweets/<%= tweet.id %>/favorite">favorite</a>
+    &nbsp;
+    <a href="/users/<%= @user.handle %>/tweets/<%= tweet.id %>/retweet">retweet</a>
+  </span>
+</div>

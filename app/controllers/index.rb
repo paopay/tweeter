@@ -21,10 +21,10 @@ post '/login' do
       redirect("/users/#{user.handle}/feed")
     else
       @error_message = "Passwords do not match"
-      redirect to('/login')
+      erb :index
     end
   @error_message = "Not a valid handle"
-  redirect('/login')
+  erb :index
   end
 end
 
@@ -44,7 +44,7 @@ post '/register' do
     redirect("/users/#{user.handle}/feed")
   else
     @error_message = "Invalid registration information"
-    redirect('/register')
+    redirect back
   end
   #redirect to(/users) #stay on same page and deliver error
 end
@@ -54,12 +54,12 @@ end
   #link to display of all tweets
   #logout button: redirect top sign-in index page
 get '/users/:handle' do
-  # @user = User.where(handle: params[:handle]).first
-  # if session[:user] == @user
+  @user = User.where(handle: params[:handle]).first
+  if session[:user] == @user
     erb :profile
-  # else
-  # redirect back
-  # end
+  else
+  redirect('/')
+  end
 end
 
 #get user tweet feed
@@ -74,9 +74,18 @@ get '/users/:handle/feed' do
   end
 end
 
+# this is just in case a user tries to get to the tweet feed manually
+get '/users/:handle/tweets' do
+  redirect('/users/' + params[:handle])
+end
+
+get '/users/:handle/tweets/new' do
+  erb :create_tweet
+end
+
 # ADDED THIS METHOD - CHECK WITH RAVI FOR USER PROFILE PAGE ERROR MESSAGE
 post '/users/:handle/tweets' do
-  user = User.where(handle: params[:handle]).first
+  @user = User.where(handle: params[:handle]).first
   tweet = user.tweets.new(params)
   if tweet.save
     redirect("/users/#{user.handle}")

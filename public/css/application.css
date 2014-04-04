@@ -1,58 +1,29 @@
 body {
   background-color: #292f33;
-}
-button {
-   border-top: 1px solid #96d1f8;
-   background: #65a9d7;
-   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
-   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
-   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
-   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
-   background: -o-linear-gradient(top, #3e779d, #65a9d7);
-   padding: 5px 10px;
-   -webkit-border-radius: 8px;
-   -moz-border-radius: 8px;
-   border-radius: 8px;
-   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   box-shadow: rgba(0,0,0,1) 0 1px 0;
-   text-shadow: rgba(0,0,0,.4) 0 1px 0;
-   color: white;
-   font-size: 14px;
-   font-family: Georgia, serif;
-   text-decoration: none;
-   vertical-align: middle;
-   margin-right: -300px;
-   }
-button:hover {
-   border-top-color: #28597a;
-   background: #28597a;
-   color: #ccc;
-   }
-button:active {
-   border-top-color: #1b435e;
-   background: #1b435e;
-   }
-
-.topbox {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5.5%;
-  text-align: center;
+  font-size: 14pt;
+  font-family: Avenir;
 }
 
-.form {
+#master {
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.index_form {
+  margin-left: 90px;
 }
 
 .container {
   background-color: white;
   margin: 20px auto;
-  width: 20%;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
-  border-radius: 10px
+  padding: 10px 20px 30px 30px;
+  border-radius: 10px;
+}
+
+.topbox {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .inputtext {
@@ -63,8 +34,74 @@ button:active {
   padding: 5px 5px;
   margin: 5px;
   border-radius: 5px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#navbar {
+  margin: 10px 0px;
+  padding: 10px 10px;
+  background-color: #0d354f;
+  -moz-border-radius: 15px; /* for firefox */
+  border-radius: 15px;
+  -webkit-box-shadow: 8px 8px 19px 0px rgba(0,0,0,0.9);
+  -moz-box-shadow: 8px 8px 19px 0px rgba(0,0,0,0.9);
+  box-shadow: 8px 8px 19px 0px rgba(0,0,0,0.9);
+}
+
+#navbar_logo {
+  position: absolute;
+  font-size: 300%;
+  text-decoration: none;
+  color: rgb(236,195,12);
+}
+
+#navbar_logo:before {
+  content:url('/img/canary.png');
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+.navbar_list {
+  list-style: none;
+  text-align: right;
+}
+
+.navbar_list li {
+  margin-right: 1%;
+  display: inline;
+}
+
+.navbar_list a {
+  color: white;
+  text-decoration: none;
 }
 
 th {
   text-align: left;
+}
+
+button {
+  text-align: right;
+  padding: 8px 10px;
+  background: #4479BA;
+  color: #FFF;
+  border-radius: 4px;
+  border: solid 1px #20538D;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+button:hover, button:focus {
+  background: #356094;
+  border: solid 1px #2A4E77;
+  text-decoration: none;
+}
+
+.index_form button {
+  margin-left: 20px;
+}
+
+h1, h2 {
+  font-weight: normal;
 }
