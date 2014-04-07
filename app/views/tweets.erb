@@ -3,6 +3,7 @@
 <h1>Tweet Feed</h1>
 <ul>
     <% @tweets.each do |tweet| %>
+    <!-- too much logic for the views! handle most of this in your model, or in a helper! -->
         <li><%=  "#{tweet.updated_at.strftime("%d %b. %Y")} - #{tweet.location} - #{tweet.content}" %></li>
      <% end %>
   </ul>
